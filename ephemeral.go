@@ -1,11 +1,8 @@
 package ephemeral
 
 import (
-	"log"
 	"net"
 	"net/http"
-
-	"golang.org/x/net/netutil"
 
 	"github.com/bfontaine/ephemeral/Godeps/_workspace/src/github.com/hydrogen18/stoppableListener"
 )
@@ -22,11 +19,9 @@ func New() *Server {
 }
 
 func (s *Server) Stop(data interface{}) {
-	log.Println("stop")
 	if s.stopped {
 		return
 	}
-	log.Println("    ...")
 	s.data = data
 	s.sl.Stop()
 	s.stopped = true
@@ -53,7 +48,7 @@ func (s *Server) Listen(host string) (data interface{}, err error) {
 
 	defer func() { data = s.data }()
 
-	s.http.Serve(netutil.LimitListener(s.sl, 1))
+	s.http.Serve(s.sl)
 
 	return
 }
