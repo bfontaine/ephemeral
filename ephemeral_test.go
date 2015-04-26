@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
+	"github.com/bfontaine/ephemeral/Godeps/_workspace/src/github.com/stretchr/testify/require"
 )
 
 func TestServer(t *testing.T) {

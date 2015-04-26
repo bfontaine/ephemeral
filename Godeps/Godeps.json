@@ -8,6 +8,14 @@
 		{
 			"ImportPath": "github.com/hydrogen18/stoppableListener",
 			"Rev": "2eebd04b47ff393f4bc50b7fcacf8f048994c6fd"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Rev": "e4ec8152c15fc46bd5056ce65997a07c7d415325"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/require",
+			"Rev": "e4ec8152c15fc46bd5056ce65997a07c7d415325"
 		}
 	]
 }
