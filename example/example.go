@@ -8,7 +8,7 @@ import (
 	"github.com/bfontaine/ephemeral"
 )
 
-func Done(s *ephemeral.Server, w http.ResponseWriter, r *http.Request) {
+func done(s *ephemeral.Server, w http.ResponseWriter, r *http.Request) {
 	log.Printf("Got a request")
 	w.Write([]byte("I got you.\n"))
 
@@ -18,7 +18,7 @@ func Done(s *ephemeral.Server, w http.ResponseWriter, r *http.Request) {
 func main() {
 	s := ephemeral.New()
 
-	s.HandleFunc("/", Done)
+	s.HandleFunc("/", done)
 
 	log.Println("Listening to port 8000...")
 	msg, err := s.Listen(":8000")
