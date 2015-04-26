@@ -61,3 +61,15 @@ func (s *Server) Listen(host string) (data interface{}, err error) {
 
 	return
 }
+
+// GetRequest is a shortcut function which creates an ephemeral Server, run it,
+// and stops once it got one request, which it then returns.
+func GetRequest(host, path string) (*http.Request, error) {
+	s := New()
+	s.HandleFunc(path, func(s *Server, w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+		s.Stop(r)
+	})
+	r, err := s.Listen(host)
+	return r.(*http.Request), err
+}
