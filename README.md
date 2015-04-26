@@ -22,7 +22,7 @@ that they take the server as their first argument:
 s.HandleFunc("/", func(s *ephemeral.Server,
     w http.ResponseWriter, r *http.Request) {
 
-    w.Write([]bye("Ok bye :)\n"))
+    w.Write([]byte("Ok bye :)\n"))
 
     s.Stop("foo")
 })
