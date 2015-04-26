@@ -15,8 +15,8 @@ Ephemeral provides a small `http`-like API. Start by creating a server:
 s := ephemeral.New()
 ```
 
-Then declare your handler(s) like you’d do with a classic HTTP server, except
-that they take the server as their first argument:
+Then declare your handler like you’d do with a classic HTTP server, except that
+it takes the server as its first argument:
 
 ```go
 s.HandleFunc("/", func(s *ephemeral.Server,
