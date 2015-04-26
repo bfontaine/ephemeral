@@ -7,6 +7,7 @@ import (
 	"github.com/bfontaine/ephemeral/Godeps/_workspace/src/github.com/hydrogen18/stoppableListener"
 )
 
+// Server is a wrapper for an ephemeral http.Server.
 type Server struct {
 	http    http.Server
 	sl      *stoppableListener.StoppableListener
@@ -14,10 +15,16 @@ type Server struct {
 	stopped bool
 }
 
+// Handler represents the type of functions used as handlers with an ephemeral
+// Server
+type Handler func(*Server, http.ResponseWriter, *http.Request)
+
+// New returns a pointer on a new Server
 func New() *Server {
 	return &Server{}
 }
 
+// Stop stops the server and use its argument as a return value for Listen.
 func (s *Server) Stop(data interface{}) {
 	if s.stopped {
 		return
@@ -27,14 +34,16 @@ func (s *Server) Stop(data interface{}) {
 	s.stopped = true
 }
 
-func (s *Server) HandleFunc(path string,
-	fn func(*Server, http.ResponseWriter, *http.Request)) {
+// HandleFunc adds a new handler for a given path
+func (s *Server) HandleFunc(path string, fn Handler) {
 
 	http.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		fn(s, w, r)
 	})
 }
 
+// Listen works like http.ListenAndServe but returns the argument passed to
+// Stop.
 func (s *Server) Listen(host string) (data interface{}, err error) {
 	listener, err := net.Listen("tcp", host)
 	if err != nil {
