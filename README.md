@@ -2,7 +2,7 @@
 
 `ephemeral` is a lightweight library to fire an ephemeral Web server. It’s
 useful when you’re writing a CLI app which needs to authenticate against a
-remote server using an authentication callback.
+remote server using a callback URI.
 
 [![GoDoc](https://godoc.org/github.com/bfontaine/ephemeral?status.svg)](https://godoc.org/github.com/bfontaine/ephemeral)
 [![Build Status](https://travis-ci.org/bfontaine/ephemeral.svg?branch=master)](https://travis-ci.org/bfontaine/ephemeral)
