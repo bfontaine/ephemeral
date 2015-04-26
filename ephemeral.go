@@ -1,3 +1,4 @@
+// Package ephemeral provides a way to create and stop an ephemeral Web server.
 package ephemeral
 
 import (
